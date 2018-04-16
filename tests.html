@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Author" content="Luvuyo Sono">
+    <title>Greeting Tests</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+   <script>
+       // the mocha test style to use - we use BDD - Behaviour Driven Development
+       mocha.setup('bdd');
+       //ensure the assert function is available
+       var assert = chai.assert;
+       var expect = chai.expect;
+   </script>
+   <!-- scripts -->
+    <script src="greet.js" charset="utf-8"></script>
+    <script src="test/greet.tests.js" charset="utf-8"></script>
+
+    <script>
+        // configure and run mocha
+        mocha.checkLeaks();
+        mocha.run();
+    </script>
+  </body>
+</html>

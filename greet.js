@@ -30,7 +30,7 @@ function Greeting(storedData) {
   }
 
   function getLanguage(){
-    return language;
+    return lang;
   }
 
   function getNames(){
@@ -56,7 +56,10 @@ function Greeting(storedData) {
     names:      getNames,
     mapNames:   namesMap,
     counter:    getNamesLength,
-    greet:      sayGreeting
+    greet:      sayGreeting,
+    //get name and languageRadio
+    userName:   getName,
+    userLang:       getLanguage
   }
 }
 
