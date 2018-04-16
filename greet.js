@@ -1,5 +1,6 @@
 var nameElem = document.querySelector('.nameInput');
 var greetBtn = document.querySelector('.btnGreeting');
+var clearBtn = document.querySelector('.btnClear');
 var messageElem = document.querySelector('.greeting-message');
 var counterElem = document.querySelector('.counter');
 
@@ -23,6 +24,10 @@ function Greeting(storedData) {
 
     if (nameList[name] == undefined)
       nameList[name] = 0;
+  }
+
+  function resetMap() {
+    nameList = {};
   }
 
   function getName(){
@@ -59,7 +64,8 @@ function Greeting(storedData) {
     greet:      sayGreeting,
     //get name and languageRadio
     userName:   getName,
-    userLang:       getLanguage
+    userLang:   getLanguage,
+    reset:      resetMap
   }
 }
 
@@ -73,12 +79,24 @@ function processGreeting() {
     greeting.language(checkedRadioBtn.value);
   }
   greeting.name(nameElem.value.trim());
+
   //Update local map
   greeting.mapNames();
   //update local storage
   localStorage.setItem('users', JSON.stringify(greeting.names()));
-  // update display element
+  messageElem.style.color = 'iherit';
   messageElem.innerHTML = greeting.greet();
   counterElem.innerHTML = "Greetings: " + greeting.counter();
+
 }
+
+function clearData() {
+  localStorage.clear();
+  greeting.reset();
+  messageElem.innerHTML = "Insert a name and select language";
+  counterElem.innerHTML = "Greetings: 0";
+}
+
+// Event listeners
 greetBtn.addEventListener('click', processGreeting);
+clearBtn.addEventListener('click', clearData);
