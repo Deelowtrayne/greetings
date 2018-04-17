@@ -93,6 +93,8 @@ function processGreeting() {
     messageElem.innerHTML = greeting.greet();
     counterElem.innerHTML = greeting.counter();
     messageElem.style.color = 'inherit';
+    // Clear the name input
+    nameElem.value = "";
   }
 }
 
