@@ -68,7 +68,9 @@ function Greeting(storedData) {
     reset:      resetMap
   }
 }
-
+/*
+  Run these as soon as the browser loads
+*/
 let storedUsers = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : {};
 var greeting = Greeting(storedUsers);
 // ensure counter shows the right value onload
@@ -89,7 +91,6 @@ function processGreeting() {
     greeting.mapNames();
     //update local storage
     localStorage.setItem('users', JSON.stringify(greeting.names()));
-
     messageElem.innerHTML = greeting.greet();
     counterElem.innerHTML = greeting.counter();
     messageElem.style.color = 'inherit';
@@ -101,8 +102,7 @@ function processGreeting() {
 function clearData() {
   localStorage.clear();
   greeting.reset();
-  messageElem.innerHTML = "Insert a name and select language";
-  counterElem.innerHTML = greeting.counter();
+  window.location.reload();
 }
 
 // Event listeners
