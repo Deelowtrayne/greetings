@@ -102,6 +102,9 @@ function processGreeting() {
 function clearData() {
   localStorage.clear();
   greeting.reset();
+  messageElem.innerHTML = "Insert a name and select language";
+  counterElem.innerHTML = greeting.counter();
+  // reload the page
   window.location.reload();
 }
 
