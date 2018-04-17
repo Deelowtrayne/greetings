@@ -75,28 +75,31 @@ var greeting = Greeting(storedUsers);
 function processGreeting() {
   // get user inputs
   let checkedRadioBtn = document.querySelector("input[name='languageRadio']:checked");
-  if (checkedRadioBtn) {
-    greeting.language(checkedRadioBtn.value);
+
+  // update display element
+  if (nameElem.value === "" || !checkedRadioBtn) {
+    messageElem.innerHTML = "Insert a name and select language";
+    messageElem.style.color = 'red';
   }
-  greeting.name(nameElem.value.trim());
-
-  //Update local map
-  greeting.mapNames();
-  //update local storage
-  localStorage.setItem('users', JSON.stringify(greeting.names()));
-  messageElem.style.color = 'iherit';
-  messageElem.innerHTML = greeting.greet();
-  counterElem.innerHTML = "Greetings: " + greeting.counter();
-
+  else {
+    greeting.language(checkedRadioBtn.value);
+    greeting.name(nameElem.value.trim());
+    greeting.mapNames();
+    //update local storage
+    localStorage.setItem('users', JSON.stringify(greeting.names()));
+    messageElem.style.color = 'inherit';
+    messageElem.innerHTML = greeting.greet();
+    counterElem.innerHTML = "Greetings: " + greeting.counter();
+  }
 }
 
 function clearData() {
   localStorage.clear();
   greeting.reset();
   messageElem.innerHTML = "Insert a name and select language";
-  counterElem.innerHTML = "Greetings: 0";
+  counterElem.innerHTML = "Greetings: " + greeting.counter();
 }
 
 // Event listeners
-greetBtn.addEventListener('click', processGreeting);
 clearBtn.addEventListener('click', clearData);
+greetBtn.addEventListener('click', processGreeting);
