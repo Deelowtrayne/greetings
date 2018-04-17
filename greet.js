@@ -2,7 +2,7 @@ var nameElem = document.querySelector('.nameInput');
 var greetBtn = document.querySelector('.btnGreeting');
 var clearBtn = document.querySelector('.btnClear');
 var messageElem = document.querySelector('.greeting-message');
-var counterElem = document.querySelector('.counter');
+var counterElem = document.querySelector('.counterVal');
 
 function Greeting(storedData) {
   var name = "";
@@ -71,6 +71,8 @@ function Greeting(storedData) {
 
 let storedUsers = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : {};
 var greeting = Greeting(storedUsers);
+// ensure counter shows the right value onload
+counterElem.innerHTML = Object.keys(storedUsers).length;
 
 function processGreeting() {
   // get user inputs
@@ -87,9 +89,10 @@ function processGreeting() {
     greeting.mapNames();
     //update local storage
     localStorage.setItem('users', JSON.stringify(greeting.names()));
-    messageElem.style.color = 'inherit';
+
     messageElem.innerHTML = greeting.greet();
-    counterElem.innerHTML = "Greetings: " + greeting.counter();
+    counterElem.innerHTML = greeting.counter();
+    messageElem.style.color = 'inherit';
   }
 }
 
@@ -97,7 +100,7 @@ function clearData() {
   localStorage.clear();
   greeting.reset();
   messageElem.innerHTML = "Insert a name and select language";
-  counterElem.innerHTML = "Greetings: " + greeting.counter();
+  counterElem.innerHTML = greeting.counter();
 }
 
 // Event listeners
